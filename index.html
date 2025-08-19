@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥛 Shri Krishna Dairy - Premium Indian Dairy Products</title>
+    <style>
+        :root {
+            --primary-color: #2c5aa0;
+            --secondary-color: #667eea;
+            --accent-color: #764ba2;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --text-primary: #333;
+            --text-secondary: #666;
+            --bg-primary: #f5f7fa;
+            --bg-secondary: #c3cfe2;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --header-bg: rgba(255, 255, 255, 0.95);
+            --shadow-light: rgba(0, 0, 0, 0.1);
+            --shadow-medium: rgba(0, 0, 0, 0.15);
+            --border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] {
+            --primary-color: #4a90e2;
+            --secondary-color: #7b68ee;
+            --accent-color: #9b59b6;
+            --success-color: #27ae60;
+            --danger-color: #c0392b;
+            --text-primary: #e4e4e4;
+            --text-secondary: #b0b0b0;
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --card-bg: rgba(42, 42, 66, 0.9);
+            --header-bg: rgba(26, 26, 46, 0.95);
+            --shadow-light: rgba(0, 0, 0, 0.3);
+            --shadow-medium: rgba(0, 0, 0, 0.4);
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 32px var(--shadow-light);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            border: 2px solid var(--border-color);
+            padding: 8px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px var(--shadow-light);
+        }
+
+        .cart-btn {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .cart-count {
+            background: var(--danger-color);
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .about-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px var(--shadow-light);
+        }
+
+        .dairy-image {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            box-shadow: 0 15px 35px var(--shadow-medium);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-weight: bold;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, rgba(44, 90, 160, 0.1) 0%, var(--card-bg) 100%);
+            margin: 2rem 0;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            text-shadow: 2px 2px 4px var(--shadow-light);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px var(--shadow-light);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px var(--shadow-medium);
+        }
+
+        .product-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .product-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .qty-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .qty-btn:hover {
+            background: var(--secondary-color);
+            transform: scale(1.1);
+        }
+
+        .qty-display {
+            font-size: 1.2rem;
+            font-weight: bold;
+            min-width: 30px;
+            color: var(--text-primary);
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .cart-content {
+            background: var(--card-bg);
+            max-width: 600px;
+            margin: 50px auto;
+            border-radius: 20px;
+            padding: 2rem;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--text-secondary);
+            transition: color 0.3s ease;
+        }
+
+        .close-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .cart-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            font-size: 2rem;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.3s ease;
+        }
+
+        .cart-item:hover {
+            background: var(--bg-primary);
+        }
+
+        .cart-item-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .cart-item-emoji {
+            font-size: 2rem;
+        }
+
+        .cart-item-details h4 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-details p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .remove-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .cart-summary {
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .checkout-btn {
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .empty-cart {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-secondary);
+        }
+
+        .empty-cart-emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--header-bg);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            backdrop-filter: blur(10px);
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            background: var(--primary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px var(--shadow-medium);
+        }
+
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px var(--shadow-medium);
+            z-index: 3000;
+            font-weight: bold;
+            animation: slideIn 0.3s ease;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        @keyframes slideOut {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(100%); opacity: 0; }
+        }
+
+        .product-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        .product-card:nth-child(7) { animation-delay: 0.7s; }
+        .product-card:nth-child(8) { animation-delay: 0.8s; }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-title {
+                font-size: 2rem;
+            }
+            
+            .dairy-image {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 1rem;
+            }
+            
+            .cart-content {
+                margin: 20px;
+                max-width: calc(100% - 40px);
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .nav-controls {
+                gap: 0.5rem;
+            }
+        }
+        /* Back to Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    border: none;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    box-shadow: 0 8px 25px var(--shadow-medium);
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1500;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px var(--shadow-medium);
+}
+    </style>
+</head>
+<body data-theme="light">
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#home" class="logo">🐄 Shri Krishna Dairy</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="nav-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">🌙</button>
+                    <button class="cart-btn" onclick="toggleCart()">
+                        🛒 Cart
+                        <span class="cart-count" id="cartCount">0</span>
+                    </button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="about-section" id="about">
+            <div class="about-content">
+                <div class="dairy-image">🐄</div>
+                <h2 class="about-title">🌟 Authentic Indian Dairy Excellence</h2>
+                <p class="about-text">
+                    For over three generations, Shri Krishna Dairy has been serving the finest traditional Indian dairy products, crafted with love and dedication. From fresh milk to authentic sweets like Rasgulla and Kheer, we bring the pure taste of rural India to your doorstep. Experience the richness of tradition in every bite! 🥛✨
+                </p>
+            </div>
+        </section>
+
+        <section class="hero" id="home">
+            <h1>🏺 Premium Indian Dairy Products</h1>
+            <p>Farm-fresh quality with traditional flavors delivered daily! 🚚🌾</p>
+        </section>
+
+        <section class="products-section" id="products">
+            <h2 class="section-title">🛍️ Our Traditional Collection</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <a href="#about" class="logo">🐄 Shri Krishna Dairy</a>
+                    <p>Serving authentic Indian dairy products for over 50 years. From farm to your family, we ensure the highest quality and traditional taste in every product.</p>
+                    <div class="social-links">
+                        <a href="#" title="Facebook">📘</a>
+                        <a href="#" title="Instagram">📷</a>
+                        <a href="#" title="WhatsApp">💬</a>
+                        <a href="#" title="Twitter">🐦</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>📞 Contact Info</h3>
+                    <p>📍 Address: Vrindavan Road, Mathura, UP 281001</p>
+                    <p>☎️ Phone: +91 9876543210</p>
+                    <p>📧 Email: orders@shrikrishnadairy.com</p>
+                    <p>🕒 Hours: 6:00 AM - 10:00 PM Daily</p>
+                </div>
+                <div class="footer-section">
+                    <h3>🚚 Services</h3>
+                    <p><a href="#">Home Delivery</a></p>
+                    <p><a href="#">Bulk Orders</a></p>
+                    <p><a href="#">Wedding Catering</a></p>
+                    <p><a href="#">Corporate Supply</a></p>
+                    <p><a href="#">Subscription Plans</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>🏆 Quality Promise</h3>
+                    <p>✅ 100% Pure & Fresh</p>
+                    <p>🐄 Grass-fed Cattle</p>
+                    <p>🧪 Lab Tested Quality</p>
+                    <p>❄️ Cold Chain Delivery</p>
+                    <p>🔄 Easy Returns</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Shri Krishna Dairy. All rights reserved. | Made with ❤️ in India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+            <h2 class="cart-header">🛒 Your Shopping Cart</h2>
+            <div id="cartItems">
+                
+                <!-- Cart items will be loaded here -->
+            </div>
+            <div class="cart-summary" id="cartSummary" style="display: none;">
+                <div class="cart-total">
+                    <span>Total: </span>
+                    <span id="cartTotal">₹0.00</span>
+                </div>
+                <button class="checkout-btn" onclick="checkout()">
+                    💳 Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ⬆️
+    </button>
+    <script>
+        // Enhanced product data with Indian dairy products and sweets
+        const products = [
+            {
+                id: 1,
+                name: "Fresh Buffalo Milk",
+                emoji: "🥛",
+                description: "Rich, creamy buffalo milk from local farms - perfect for tea and cooking",
+                price: 70,
+                unit: "1 Liter"
+            },
+            {
+                id: 2,
+                name: "Homemade Dahi",
+                emoji: "🥣",
+                description: "Fresh, tangy yogurt made daily using traditional methods",
+                price: 60,
+                unit: "500g"
+            },
+            {
+                id: 3,
+                name: "Pure Desi Ghee",
+                emoji: "🧈",
+                description: "Golden, aromatic ghee made from buffalo milk using bilona method",
+                price: 450,
+                unit: "250g"
+            },
+            {
+                id: 4,
+                name: "Fresh Paneer",
+                emoji: "🧀",
+                description: "Soft, fresh cottage cheese made daily - perfect for curries",
+                price: 180,
+                unit: "250g"
+            },
+            {
+                id: 5,
+                name: "Rasgulla (4 pcs)",
+                emoji: "🍯",
+                description: "Soft, spongy Bengali sweet soaked in sugar syrup",
+                price: 120,
+                unit: "4 pieces"
+            },
+            {
+                id: 6,
+                name: "Gulab Jamun (6 pcs)",
+                emoji: "🍮",
+                description: "Traditional milk solid dumplings in aromatic sugar syrup",
+                price: 150,
+                unit: "6 pieces"
+            },
+            {
+                id: 7,
+                name: "Rice Kheer",
+                emoji: "🍚",
+                description: "Creamy rice pudding cooked in milk with cardamom and nuts",
+                price: 80,
+                unit: "200g"
+            },
+            {
+                id: 8,
+                name: "Malai Kulfi",
+                emoji: "🍦",
+                description: "Traditional Indian ice cream with rich malai and pistachios",
+                price: 40,
+                unit: "1 piece"
+            }
+        ];
+
+        // Cart state and theme management
+        let cart = [];
+        let quantities = {};
+        let currentTheme = 'light';
+
+        // Initialize quantities
+        products.forEach(product => {
+            quantities[product.id] = 1;
+        });
+
+        // Load products on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadProducts();
+            updateCartCount();
+            loadTheme();
+        });
+
+        // Theme Management
+        function toggleTheme() {
+            const body = document.body;
+            const themeToggle = document.querySelector('.theme-toggle');
+            
+            currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+            body.setAttribute('data-theme', currentTheme);
+            
+            // Update theme toggle icon
+            themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+            themeToggle.title = `Switch to ${currentTheme === 'light' ? 'Dark' : 'Light'} Theme`;
+            
+            // Save theme preference
+            localStorage.setItem('theme', currentTheme);
+        }
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme) {
+                currentTheme = savedTheme;
+                document.body.setAttribute('data-theme', currentTheme);
+                const themeToggle = document.querySelector('.theme-toggle');
+                themeToggle.textContent = currentTheme === 'light' ? '🌙' : '☀️';
+                themeToggle.title = `Switch to ${currentTheme === 'light' ? 'Dark' : 'Light'} Theme`;
+            }
+        }
+
+        function loadProducts() {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <span class="product-emoji">${product.emoji}</span>
+                    <h3 class="product-name">${product.name}</h3>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-price">₹${product.price} <small>/ ${product.unit}</small></div>
+                    <div class="quantity-controls">
+                        <button class="qty-btn" onclick="changeQuantity(${product.id}, -1)">−</button>
+                        <span class="qty-display" id="qty-${product.id}">${quantities[product.id]}</span>
+                        <button class="qty-btn" onclick="changeQuantity(${product.id}, 1)">+</button>
+                    </div>
+                    <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+                        🛒 Add to Cart
+                    </button>
+                `;
+                grid.appendChild(productCard);
+            });
+        }
+
+        function changeQuantity(productId, change) {
+            quantities[productId] = Math.max(1, quantities[productId] + change);
+            document.getElementById(`qty-${productId}`).textContent = quantities[productId];
+        }
+
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const quantity = quantities[productId];
+            
+            // Check if item already in cart
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: quantity
+                });
+            }
+            
+            updateCartCount();
+            showAddedNotification(product.name);
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartCount();
+            updateCartDisplay();
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const countElement = document.getElementById('cartCount');
+            countElement.textContent = totalItems;
+            
+            if (totalItems > 0) {
+                countElement.style.display = 'flex';
+            } else {
+                countElement.style.display = 'none';
+            }
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cartModal');
+            const isOpen = modal.style.display === 'block';
+            
+            if (isOpen) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            } else {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                updateCartDisplay();
+            }
+        }
+
+        function updateCartDisplay() {
+            const cartItems = document.getElementById('cartItems');
+            const cartSummary = document.getElementById('cartSummary');
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="empty-cart">
+                        <div class="empty-cart-emoji">🛒</div>
+                        <h3>Your cart is empty</h3>
+                        <p>Add some delicious dairy products to get started!</p>
+                    </div>
+                `;
+                cartSummary.style.display = 'none';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-info">
+                            <span class="cart-item-emoji">${item.emoji}</span>
+                            <div class="cart-item-details">
+                                <h4>${item.name}</h4>
+                                <p>₹${item.price} × ${item.quantity} = ₹${item.price * item.quantity}</p>
+                            </div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <div class="quantity-controls">
+                                <button class="qty-btn" onclick="updateCartItemQuantity(${item.id}, -1)">−</button>
+                                <span class="qty-display">${item.quantity}</span>
+                                <button class="qty-btn" onclick="updateCartItemQuantity(${item.id}, 1)">+</button>
+                            </div>
+                            <button class="remove-btn" onclick="removeFromCart(${item.id})">🗑️ Remove</button>
+                        </div>
+                    </div>
+                `).join('');
+                
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                document.getElementById('cartTotal').textContent = `₹${total.toFixed(2)}`;
+                cartSummary.style.display = 'block';
+            }
+        }
+
+        function updateCartItemQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity = Math.max(1, item.quantity + change);
+                updateCartCount();
+                updateCartDisplay();
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) return;
+            
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const itemCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            
+            // Simulate checkout process
+            const checkoutBtn = document.querySelector('.checkout-btn');
+            const originalText = checkoutBtn.innerHTML;
+            checkoutBtn.innerHTML = '<div class="loading"></div> Processing...';
+            checkoutBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`🎉 Order Confirmed!\n\n📦 ${itemCount} items\n💰 Total: ₹${total.toFixed(2)}\n\n🚚 Your fresh dairy products will be delivered within 2-3 hours!\n\nDhanyawad for choosing Shri Krishna Dairy! 🙏✨`);
+                
+                // Clear cart
+                cart = [];
+                updateCartCount();
+                toggleCart();
+                
+                // Reset all quantities to 1
+products.forEach(product => {
+    quantities[product.id] = 1;
+    const qtyElement = document.getElementById(`qty-${product.id}`);
+    if (qtyElement) {
+        qtyElement.textContent = 1;
+    }
+});
+                
+                // Reset button
+                checkoutBtn.innerHTML = originalText;
+                checkoutBtn.disabled = false;
+            }, 2000);
+        }
+
+        function showAddedNotification(productName) {
+            // Create notification
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.innerHTML = `✅ ${productName} added to cart!`;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease forwards';
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.parentNode.removeChild(notification);
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('cartModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                toggleCart();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        // Clear cart
+
+// Back to top functionality
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Show/hide back to top button based on scroll
+window.addEventListener('scroll', function() {
+    const backToTopBtn = document.getElementById('backToTop');
+    
+    if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('show');
+    } else {
+        backToTopBtn.classList.remove('show');
+    }
+});
+        // Add scroll effect to header
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const header = document.querySelector('header');
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            lastScrollTop = scrollTop;
+        });
+    </script>
+</body>
+</html>
